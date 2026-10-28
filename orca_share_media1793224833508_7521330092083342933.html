@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101923">
+<title>Kalendarz zapisów: Lena dziara</title>
+<style>
+:root{--bg:#101923;--panel:#172431;--panel2:#1d2d3b;--ink:#f3f6f8;--muted:#a9bac7;--line:#304452;--yellow:#ffd447;--blue:#58b9ff;--orange:#ff9c43;--purple:#b59aff;--red:#ff6e75;--green:#74dfb0;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#203a4b 0,transparent 38%),var(--bg);color:var(--ink);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+.app{max-width:1440px;margin:auto;padding:22px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:13px}.mark{width:48px;height:48px;border-radius:15px;background:var(--yellow);color:#15222c;display:grid;place-items:center;font-size:23px;font-weight:950;box-shadow:5px 5px 0 var(--blue)}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:10px;color:var(--blue);font-weight:800}.brand h1{font-size:clamp(20px,3vw,30px);letter-spacing:-.045em;margin:2px 0 0}.top-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);border-radius:12px;padding:10px 14px;color:var(--ink);background:var(--panel2);font-weight:750;transition:.15s}.btn:hover{transform:translateY(-1px);border-color:var(--blue)}.btn.primary{background:var(--yellow);color:#18232d;border-color:var(--yellow)}.btn.ghost{background:transparent}.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.8fr);gap:18px;align-items:start}.panel{background:linear-gradient(145deg,rgba(30,46,60,.96),rgba(19,31,42,.98));border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 16px 40px #0002;overflow:hidden}.panel-head{padding:20px 21px 15px;display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-head h2,.section-title{margin:0;font-size:18px;letter-spacing:-.025em}.month-nav{display:flex;align-items:center;gap:8px}.month-nav strong{min-width:155px;text-align:center;font-size:16px}.icon-btn{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:#15222d;color:var(--ink);font-size:20px}.calendar{padding:0 15px 16px}.weekdays,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.weekdays div{text-align:center;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;padding:9px 0;font-weight:800}.day{min-height:88px;border:1px solid #314452;border-radius:12px;background:#14222d;color:var(--ink);padding:8px;position:relative;text-align:left;display:flex;flex-direction:column;gap:7px;min-width:0;transition:.12s}.day:hover{border-color:var(--blue);background:#203546}.day.empty{background:transparent;border-color:transparent;pointer-events:none}.day.today .num{background:var(--yellow);color:#15222c;border-radius:8px;padding:2px 6px}.day.selected{outline:2px solid var(--blue);outline-offset:1px;border-color:var(--blue)}.day.has-events{background:#1a2b37}.day .num{font-size:13px;font-weight:850;align-self:flex-start}.day .marks{display:flex;align-items:center;gap:4px;flex-wrap:wrap}.dot{display:inline-flex;align-items:center;justify-content:center;min-width:9px;height:9px;border-radius:99px;background:var(--blue);font-size:8px;font-weight:950;color:#14202a}.dot.party{background:var(--orange)}.dot.grun{background:var(--purple)}.dot.studio{background:var(--yellow)}.dot.multi{width:auto;height:17px;padding:0 5px}.day .count{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.legend{display:flex;gap:13px;flex-wrap:wrap;padding:12px 3px 0;color:var(--muted);font-size:11px}.legend span{display:flex;align-items:center;gap:6px}.legend .sample{width:9px;height:9px;border-radius:50%;display:inline-block}.side{display:grid;gap:18px}.date-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}.date-heading p{margin:3px 0 0;color:var(--muted);font-size:12px}.event-list{padding:0 16px 16px;display:grid;gap:10px}.empty-state{padding:24px 14px;text-align:center;color:var(--muted);border:1px dashed #405363;border-radius:14px}.empty-state .emoji{font-size:26px;margin-bottom:5px}.event{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:13px;background:#13212b;padding:12px}.event.party{border-left-color:var(--orange)}.event.grun{border-left-color:var(--purple)}.event.studio{border-left-color:var(--yellow)}.event-top{display:flex;justify-content:space-between;gap:8px;align-items:start}.event h3{margin:0;font-size:14px}.event small{color:var(--muted)}.event p{margin:7px 0 0;font-size:12px;color:#d3dee5;overflow-wrap:anywhere}.event-actions{display:flex;gap:6px}.tiny-btn{background:#223442;border:1px solid #3a4e5c;color:var(--ink);border-radius:8px;padding:5px 8px;font-size:11px}.pill{display:inline-flex;align-items:center;border-radius:99px;padding:3px 8px;font-size:10px;font-weight:850;background:#253b49;color:#dceaf3}.pill.paid{background:#174838;color:#9cf0cb}.pill.unpaid{background:#4a3530;color:#ffb9a9}.pill.party{background:#51371f;color:#ffc18a}.pill.grun{background:#3e315c;color:#d1baff}.pill.studio{background:#55491d;color:#ffe88b}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 16px 17px}.stat{padding:12px;border-radius:12px;background:#13212b;border:1px solid var(--line)}.stat span{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}.stat strong{font-size:19px;letter-spacing:-.04em}.bottom-note{margin-top:17px;color:#91a4b2;font-size:11px;text-align:center}
+.overlay{position:fixed;inset:0;background:#061019d9;z-index:10;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}.overlay.open{display:flex}.modal{width:min(760px,100%);max-height:min(92vh,900px);overflow:auto;border:1px solid #435969;border-radius:20px;background:#172633;box-shadow:0 25px 90px #0008}.modal-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:17px 20px;background:#172633ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.modal-head h2{font-size:19px;margin:0}.close{border:1px solid var(--line);background:#223543;color:var(--ink);border-radius:10px;width:36px;height:36px;font-size:21px}.form{padding:20px;display:grid;gap:16px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:6px;min-width:0}.field.full{grid-column:1/-1}.field label,.group-label{font-size:12px;font-weight:800;color:#d7e3eb}.field input,.field select,.field textarea{width:100%;min-width:0;background:#0f1c26;border:1px solid #3b505f;color:var(--ink);border-radius:11px;padding:11px 12px}.field textarea{resize:vertical;min-height:86px}.field input[type="file"]{padding:9px;font-size:12px}.help{font-size:11px;color:var(--muted)}.segmented{display:flex;gap:8px;flex-wrap:wrap}.segmented label{position:relative;cursor:pointer}.segmented input{position:absolute;opacity:0;pointer-events:none}.segmented span{display:inline-flex;padding:9px 12px;border:1px solid #3b505f;border-radius:10px;background:#10202b;color:#c8d5de;font-size:12px;font-weight:800}.segmented input:checked+span{border-color:var(--yellow);background:#453d1c;color:#ffeb8a}.segmented .orange input:checked+span{border-color:var(--orange);background:#4d321d;color:#ffc28e}.segmented .purple input:checked+span{border-color:var(--purple);background:#382e53;color:#d4c4ff}.calc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;background:#10202a;padding:13px;border:1px solid #334956;border-radius:14px}.calc-item{padding:10px;border-radius:10px;background:#1a2b37}.calc-item span{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.calc-item strong{font-size:18px;letter-spacing:-.03em}.calc-item.highlight{border:1px solid #5d5525;background:#2d2b1b}.calc-item.highlight strong{color:var(--yellow)}.warning{display:none;padding:11px 12px;border-radius:11px;background:#4a302b;border:1px solid #a65d4e;color:#ffd2c9;font-size:12px}.warning.show{display:block}.attachments{display:flex;gap:8px;flex-wrap:wrap}.attachment{width:92px;height:92px;border-radius:10px;border:1px solid var(--line);object-fit:cover}.attachment-wrap{position:relative}.attachment-wrap button{position:absolute;right:3px;top:3px;border:0;border-radius:50%;background:#101923e8;color:white;width:23px;height:23px}.form-footer{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;padding-top:5px}.form-footer .right{display:flex;gap:8px;margin-left:auto}.danger{color:#ffb6b6;border-color:#754747}.checkbox-line{display:flex;gap:9px;align-items:center;color:var(--ink);font-size:13px}.checkbox-line input{accent-color:var(--yellow);width:17px;height:17px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr;align-items:start}.side .panel:first-child{grid-column:1/-1}.day{min-height:76px}}
+@media(max-width:560px){.app{padding:12px}.topbar{align-items:flex-start}.top-actions{gap:6px}.top-actions .btn{padding:9px 10px;font-size:12px}.mark{width:41px;height:41px}.brand{gap:10px}.brand .eyebrow{font-size:9px}.panel-head{padding:15px 13px 12px;align-items:flex-start;flex-direction:column}.panel-head h2{font-size:16px}.month-nav{width:100%;justify-content:space-between}.month-nav strong{font-size:14px}.calendar{padding:0 7px 12px}.weekdays,.days{gap:3px}.weekdays div{font-size:9px;padding:7px 0}.day{min-height:59px;padding:5px 4px;border-radius:8px;gap:5px}.day .num{font-size:11px}.day .count{font-size:9px}.dot{min-width:7px;height:7px}.dot.multi{height:14px;padding:0 4px;font-size:7px}.legend{gap:8px;font-size:10px}.side{grid-template-columns:1fr}.side .panel:first-child{grid-column:auto}.stats{gap:6px;padding:0 12px 12px}.stat{padding:9px}.stat strong{font-size:16px}.stat span{font-size:9px}.form{padding:14px}.form-grid{grid-template-columns:1fr;gap:12px}.field.full{grid-column:auto}.modal-head{padding:13px 15px}.calc{gap:7px;padding:9px}.calc-item{padding:9px}.calc-item strong{font-size:16px}.overlay{padding:8px}.modal{max-height:96vh;border-radius:16px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="mark">L✦</div><div><div class="eyebrow">Studio planner · tattoo bookings</div><h1>Kalendarz zapisów: Lena dziara</h1></div></div>
+    <div class="top-actions"><button class="btn ghost" id="todayBtn">Dzisiaj</button><button class="btn" id="exportBtn">Eksportuj dane</button><button class="btn primary" id="addBtn">＋ Nowy zapis</button></div>
+  </header>
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-head"><div><div class="eyebrow">Twój harmonogram</div><h2>Kalendarz</h2></div><div class="month-nav"><button class="icon-btn" id="prevMonth" aria-label="Poprzedni miesiąc">‹</button><strong id="monthLabel">Październik 2026</strong><button class="icon-btn" id="nextMonth" aria-label="Następny miesiąc">›</button></div></div>
+      <div class="calendar"><div class="weekdays"><div>Pn</div><div>Wt</div><div>Śr</div><div>Cz</div><div>Pt</div><div>Sb</div><div>Nd</div></div><div class="days" id="daysGrid"></div>
+      <div class="legend"><span><i class="sample" style="background:var(--orange)"></i> Partyzantów</span><span><i class="sample" style="background:var(--purple)"></i> Grunwaldzka</span><span><i class="sample" style="background:var(--yellow)"></i> Dzień w studio</span><span><b style="color:var(--blue)">D</b> Dzień z tatuażem</span></div></div>
+    </section>
+    <aside class="side">
+      <section class="panel">
+        <div class="panel-head"><div class="date-heading"><div><div class="eyebrow">Wybrany dzień</div><h2 id="selectedDateTitle">Dzisiaj</h2><p id="selectedSub">Twoje zapisy i obecność</p></div></div><button class="btn primary" id="addSelected">＋ Dodaj</button></div>
+        <div class="event-list" id="eventList"></div>
+      </section>
+      <section class="panel">
+        <div class="panel-head"><div><div class="eyebrow">Ten miesiąc</div><h2>Podsumowanie</h2></div></div>
+        <div class="stats"><div class="stat"><span>Sesje</span><strong id="statSessions">0</strong></div><div class="stat"><span>Przychód z sesji</span><strong id="statRevenue">0 zł</strong></div><div class="stat"><span>Zadatki</span><strong id="statDeposits">0 zł</strong></div></div>
+      </section>
+    </aside>
+  </main>
+  <div class="bottom-note">Dane zapisują się lokalnie w tej przeglądarce na tym urządzeniu. Regularnie eksportuj kopię zapasową.</div>
+</div>
+
+<div class="overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal"><div class="modal-head"><h2 id="modalTitle">Nowy zapis</h2><button class="close" id="closeModal" aria-label="Zamknij">×</button></div>
+<form class="form" id="bookingForm">
+<input type="hidden" id="entryId">
+<div class="form-grid">
+<div class="field"><label for="entryDate">Data</label><input type="date" id="entryDate" required></div>
+<div class="field"><label>Rodzaj wpisu</label><div class="segmented"><label><input type="radio" name="entryType" value="tattoo" checked><span>Sesja tatuażu</span></label><label><input type="radio" name="entryType" value="studio"><span>Obecność w studio</span></label></div></div>
+<div class="field"><label for="startTime">Godzina od</label><input type="time" id="startTime" value="10:00" required></div>
+<div class="field"><label for="endTime">Godzina do</label><input type="time" id="endTime" value="12:00" required></div>
+<div class="field full" id="studioField"><label>Studio</label><div class="segmented"><label class="orange"><input type="radio" name="studio" value="partyzantow" checked><span>● Partyzantów</span></label><label class="purple"><input type="radio" name="studio" value="grunwaldzka"><span>● Grunwaldzka</span></label></div></div>
+<div class="field"><label for="clientName">Imię / nazwa klienta</label><input id="clientName" placeholder="Np. Marta K." autocomplete="off"></div>
+<div class="field"><label for="tattooName">Jaki tatuaż?</label><input id="tattooName" placeholder="Np. kwiat na przedramieniu"></div>
+<div class="field"><label for="price">Cena tatuażu (zł)</label><input type="number" id="price" min="0" step="0.01" placeholder="300"></div>
+<div class="field"><label for="deposit">Wpłacony zadatek (zł)</label><input type="number" id="deposit" min="0" step="0.01" value="0"></div>
+<div class="field"><label for="source">Skąd pisze?</label><select id="source"><option value="">Wybierz źródło</option><option>Facebook — priv</option><option>Facebook — fanpage</option><option>Instagram</option><option>Inne</option></select></div>
+<div class="field"><label for="profileName">Nazwa profilu</label><input id="profileName" placeholder="@nazwa_profilu"></div>
+<div class="field full"><label for="comments">Komentarze / notatki</label><textarea id="comments" placeholder="Ustalenia, rozmiar, miejsce na ciele, szczegóły..."></textarea></div>
+<div class="field full"><label for="referenceFiles">Zdjęcia referencyjne</label><input type="file" id="referenceFiles" accept="image/*" multiple><div class="help">Wybierz zdjęcia z galerii urządzenia. Są zapisywane razem z wpisem w tej przeglądarce.</div><div class="attachments" id="attachments"></div></div>
+</div>
+<div id="calcSection">
+<div class="eyebrow">Automatyczne wyliczenia</div>
+<div class="calc">
+<div class="calc-item"><span>Klient dopłaca po sesji</span><strong id="calcBalance">0 zł</strong></div>
+<div class="calc-item"><span>Twoje 40% z ceny</span><strong id="calcShare">0 zł</strong></div>
+<div class="calc-item"><span>Zadatek już u Ciebie</span><strong id="calcDeposit">0 zł</strong></div>
+<div class="calc-item highlight"><span>Dopłata od studia dla Ciebie</span><strong id="calcStudioPay">0 zł</strong></div>
+</div><div class="help" style="margin-top:7px">Założenie: Twoja część to 40% ceny. Zadatek pomniejsza wypłatę od studia, a dopłata klienta = cena minus zadatek.</div></div>
+<div class="warning" id="overlapWarning"></div>
+<div class="form-footer"><button type="button" class="btn danger" id="deleteBtn" style="display:none">Usuń wpis</button><div class="right"><button type="button" class="btn" id="cancelBtn">Anuluj</button><button type="submit" class="btn primary">Zapisz wpis</button></div></div>
+</form></div></div>
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const MONTHS = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
+const DAYS = ['niedziela','poniedziałek','wtorek','środa','czwartek','piątek','sobota'];
+const STORE_KEY = 'lenaDziaraCalendar_v1';
+let entries = [];
+let selectedDate = '2026-10-28';
+let viewYear = 2026, viewMonth = 9;
+let currentImages = [];
+let pendingFiles = [];
+try { entries = JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); if (!Array.isArray(entries)) entries=[]; } catch(e) { entries=[]; }
+const money = n => (Number(n)||0).toLocaleString('pl-PL',{maximumFractionDigits:2}) + ' zł';
+const pad = n => String(n).padStart(2,'0');
+const dateKey = (y,m,d) => `${y}-${pad(m+1)}-${pad(d)}`;
+const safe = s => String(s ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const studioName = s => s==='partyzantow'?'Partyzantów':'Grunwaldzka';
+const studioClass = s => s==='partyzantow'?'party':'grun';
+const formatDate = key => {const [y,m,d]=key.split('-').map(Number);return `${d} ${MONTHS[m-1]} ${y}`};
+function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(entries));}catch(e){alert('Brak miejsca w pamięci przeglądarki. Usuń część zdjęć lub wyeksportuj dane i spróbuj ponownie.');}}
+function monthEntries(y,m){return entries.filter(e=>{const d=new Date(e.date+'T12:00:00');return d.getFullYear()===y&&d.getMonth()===m;});}
+function renderCalendar(){
+ $('monthLabel').textContent=`${MONTHS[viewMonth]} ${viewYear}`;
+ const grid=$('daysGrid');grid.innerHTML='';
+ const first=new Date(viewYear,viewMonth,1); const offset=(first.getDay()+6)%7; const total=new Date(viewYear,viewMonth+1,0).getDate();
+ for(let i=0;i<offset;i++){const el=document.createElement('div');el.className='day empty';grid.appendChild(el);}
+ const today=new Date(); const todayKey=dateKey(today.getFullYear(),today.getMonth(),today.getDate());
+ for(let d=1;d<=total;d++){
+  const key=dateKey(viewYear,viewMonth,d), items=entries.filter(e=>e.date===key), tattoos=items.filter(e=>e.type==='tattoo'), studio=items.some(e=>e.type==='studio');
+  const el=document.createElement('button');el.type='button';el.className='day'+(key===todayKey?' today':'')+(key===selectedDate?' selected':'')+(items.length?' has-events':'');
+  let marks='';
+  if(tattoos.length){const studios=[...new Set(tattoos.map(e=>e.studio))]; marks+=studios.map(s=>`<i class="dot multi ${studioClass(s)}" title="${studioName(s)}">${tattoos.length>1?tattoos.length:''}</i>`).join('');}
+  if(studio)marks+='<i class="dot studio" title="Obecność w studio"></i>';
+  el.innerHTML=`<span class="num">${d}</span><span class="marks">${marks}</span>${items.length?`<span class="count">${tattoos.length?'<b style="color:var(--blue)">D</b> ':''}${items.length} wpis${items.length===1?'':'y'}</span>`:''}`;
+  el.addEventListener('click',()=>{selectedDate=key;renderCalendar();renderDay();});grid.appendChild(el);
+ }
+ const used=offset+total;for(let i=used;i<42;i++){const el=document.createElement('div');el.className='day empty';grid.appendChild(el);}
+ renderStats();
+}
+function renderDay(){
+ const [y,m,d]=selectedDate.split('-').map(Number), dt=new Date(y,m-1,d);
+ $('selectedDateTitle').textContent=`${d} ${MONTHS[m-1]}`;
+ $('selectedSub').textContent=`${DAYS[dt.getDay()]} · ${y}`;
+ const list=$('eventList');list.innerHTML='';
+ const items=entries.filter(e=>e.date===selectedDate).sort((a,b)=>a.start.localeCompare(b.start));
+ if(!items.length){list.innerHTML='<div class="empty-state"><div class="emoji">✦</div><strong>Ten dzień jest wolny</strong><div style="margin-top:5px;font-size:12px">Dodaj sesję tatuażu albo zaznacz obecność w studio.</div></div>';return;}
+ items.forEach(e=>{
+  const div=document.createElement('article');div.className='event '+(e.type==='studio'?'studio':studioClass(e.studio));
+  const heading=e.type==='studio'?'Obecność w studio':(e.client||'Klient bez nazwy');
+  const badges=e.type==='studio'?'<span class="pill studio">Studio</span>':`<span class="pill ${studioClass(e.studio)}">${studioName(e.studio)}</span> <span class="pill ${Number(e.deposit)>0?'paid':'unpaid'}">${Number(e.deposit)>0?'Zadatek: '+money(e.deposit):'Brak zadatku'}</span>`;
+  div.innerHTML=`<div class="event-top"><div><h3>${safe(heading)}</h3><small>${safe(e.start)}–${safe(e.end)}</small></div><div class="event-actions"><button class="tiny-btn" data-edit="${e.id}">Edytuj</button></div></div><p>${badges}</p>${e.type==='tattoo'?`<p>${safe(e.tattoo||'Nie podano opisu')} · ${money(e.price)}</p><p>Do zapłaty po sesji: <b>${money(Math.max(0,Number(e.price||0)-Number(e.deposit||0)))}</b></p>${e.source?`<p>${safe(e.source)}${e.profile?' · '+safe(e.profile):''}</p>`:''}`:''}${e.comments?`<p>${safe(e.comments)}</p>`:''}${e.images?.length?`<p>📎 ${e.images.length} zdjęć referencyjnych</p>`:''}`;
+  div.querySelector('[data-edit]').addEventListener('click',()=>openModal(e));list.appendChild(div);
+ });
+}
+function renderStats(){
+ const items=monthEntries(viewYear,viewMonth).filter(e=>e.type==='tattoo');
+ $('statSessions').textContent=items.length;
+ $('statRevenue').textContent=money(items.reduce((a,e)=>a+Number(e.price||0),0));
+ $('statDeposits').textContent=money(items.reduce((a,e)=>a+Number(e.deposit||0),0));
+}
+function openModal(entry=null){
+ $('bookingForm').reset();currentImages=[];pendingFiles=[];$('attachments').innerHTML='';$('entryId').value=entry?.id||'';
+ $('modalTitle').textContent=entry?'Edytuj wpis':'Nowy zapis';$('deleteBtn').style.display=entry?'inline-flex':'none';
+ $('entryDate').value=entry?.date||selectedDate;$('startTime').value=entry?.start||'10:00';$('endTime').value=entry?.end||'12:00';
+ document.querySelector(`input[name="entryType"][value="${entry?.type||'tattoo'}"]`).checked=true;
+ document.querySelector(`input[name="studio"][value="${entry?.studio||'partyzantow'}"]`).checked=true;
+ $('clientName').value=entry?.client||'';$('tattooName').value=entry?.tattoo||'';$('price').value=entry?.price??'';$('deposit').value=entry?.deposit??0;
+ $('source').value=entry?.source||'';$('profileName').value=entry?.profile||'';$('comments').value=entry?.comments||'';
+ currentImages=(entry?.images||[]).slice();renderAttachments();toggleType();calculate();checkOverlap();
+ $('modalOverlay').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeModal(){$('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleType(){const isTattoo=document.querySelector('input[name="entryType"]:checked').value==='tattoo';$('studioField').style.display=isTattoo?'grid':'none';$('calcSection').style.display=isTattoo?'block':'none';['clientName','tattooName','price','deposit','source','profileName'].forEach(id=>$(id).closest('.field').style.display=isTattoo?'grid':'none');calculate();checkOverlap();}
+function calculate(){
+ const price=Math.max(0,Number($('price').value)||0),deposit=Math.max(0,Number($('deposit').value)||0),share=price*.4;
+ $('calcBalance').textContent=money(Math.max(0,price-deposit));$('calcShare').textContent=money(share);$('calcDeposit').textContent=money(deposit);$('calcStudioPay').textContent=money(Math.max(0,share-deposit));
+}
+function checkOverlap(){
+ const date=$('entryDate').value,start=$('startTime').value,end=$('endTime').value,id=$('entryId').value;
+ const warning=$('overlapWarning');
+ if(!date||!start||!end||end<=start){warning.textContent='Sprawdź godziny — godzina zakończenia musi być późniejsza niż rozpoczęcia.';warning.classList.add('show');return;}
+ const clashes=entries.filter(e=>e.date===date&&e.id!==id&&start<e.end&&end>e.start);
+ if(clashes.length){warning.innerHTML='⚠️ <b>Uwaga, kolizja godzin!</b> Ten przedział pokrywa się z: '+clashes.map(e=>`${safe(e.start)}–${safe(e.end)} (${safe(e.type==='studio'?'obecność w studio':e.client||'sesja')})`).join(', ')+'. Możesz zapisać mimo konfliktu.';warning.classList.add('show');}
+ else{warning.classList.remove('show');warning.textContent='';}
+}
+function renderAttachments(){
+ const wrap=$('attachments');wrap.innerHTML='';
+ currentImages.forEach((src,i)=>{const div=document.createElement('div');div.className='attachment-wrap';div.innerHTML=`<img class="attachment" src="${src}" alt="Zdjęcie referencyjne ${i+1}"><button type="button" aria-label="Usuń zdjęcie">×</button>`;div.querySelector('button').addEventListener('click',()=>{currentImages.splice(i,1);renderAttachments();});wrap.appendChild(div);});
+ pendingFiles.forEach((file,i)=>{const div=document.createElement('div');div.className='attachment-wrap';div.innerHTML=`<div class="attachment" style="display:grid;place-items:center;background:#223442;font-size:11px;padding:5px;text-align:center;overflow:hidden">${safe(file.name)}</div><button type="button" aria-label="Usuń zdjęcie">×</button>`;div.querySelector('button').addEventListener('click',()=>{pendingFiles.splice(i,1);renderAttachments();});wrap.appendChild(div);});
+}
+function compressImage(file){
+ return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.78));};img.src=reader.result;};reader.readAsDataURL(file);});
+}
+$('referenceFiles').addEventListener('change',e=>{pendingFiles.push(...Array.from(e.target.files||[]));renderAttachments();e.target.value='';});
+['price','deposit'].forEach(id=>$(id).addEventListener('input',calculate));
+['entryDate','startTime','endTime'].forEach(id=>$(id).addEventListener('input',checkOverlap));
+document.querySelectorAll('input[name="entryType"]').forEach(el=>el.addEventListener('change',toggleType));
+$('bookingForm').addEventListener('submit',async e=>{
+ e.preventDefault();const date=$('entryDate').value,start=$('startTime').value,end=$('endTime').value;
+ if(!date||!start||!end||end<=start){checkOverlap();return;}
+ const type=document.querySelector('input[name="entryType"]:checked').value;
+ if(type==='tattoo'&&!$('clientName').value.trim()&&!$('tattooName').value.trim()){if(!confirm('Nie wpisano klienta ani opisu tatuażu. Zapisać mimo to?'))return;}
+ const btn=$('bookingForm').querySelector('[type="submit"]');btn.disabled=true;btn.textContent='Zapisywanie…';
+ try{
+  for(const file of pendingFiles){if(!file.type.startsWith('image/'))continue;currentImages.push(await compressImage(file));}
+  const id=$('entryId').value||('e'+Date.now()+Math.random().toString(16).slice(2,7));
+  const item={id,date,start,end,type,studio:document.querySelector('input[name="studio"]:checked').value,client:$('clientName').value.trim(),tattoo:$('tattooName').value.trim(),price:Number($('price').value)||0,deposit:Number($('deposit').value)||0,source:$('source').value,profile:$('profileName').value.trim(),comments:$('comments').value.trim(),images:currentImages};
+  const index=entries.findIndex(x=>x.id===id);if(index>=0)entries[index]=item;else entries.push(item);
+  persist();selectedDate=date;const [y,m]=date.split('-').map(Number);viewYear=y;viewMonth=m-1;closeModal();renderCalendar();renderDay();
+ }catch(err){alert('Nie udało się zapisać zdjęcia. Spróbuj wybrać mniejszy plik.');}
+ finally{btn.disabled=false;btn.textContent='Zapisz wpis';}
+});
+$('deleteBtn').addEventListener('click',()=>{const id=$('entryId').value;if(id&&confirm('Na pewno usunąć ten wpis?')){entries=entries.filter(e=>e.id!==id);persist();closeModal();renderCalendar();renderDay();}});
+$('closeModal').addEventListener('click',closeModal);$('cancelBtn').addEventListener('click',closeModal);
+$('modalOverlay').addEventListener('click',e=>{if(e.target===$('modalOverlay'))closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+$('addBtn').addEventListener('click',()=>openModal());$('addSelected').addEventListener('click',()=>openModal());
+$('prevMonth').addEventListener('click',()=>{viewMonth--;if(viewMonth<0){viewMonth=11;viewYear--;}renderCalendar();});
+$('nextMonth').addEventListener('click',()=>{viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++;}renderCalendar();});
+$('todayBtn').addEventListener('click',()=>{const d=new Date();viewYear=d.getFullYear();viewMonth=d.getMonth();selectedDate=dateKey(viewYear,viewMonth,d.getDate());renderCalendar();renderDay();});
+$('exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'Kalendarz zapisów: Lena dziara',version:1,exportedAt:new Date().toISOString(),entries},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='lena-dziara-kopia-zapasowa.json';a.click();URL.revokeObjectURL(url);});
+renderCalendar();renderDay();
+})();
+</script>
+</body>
+</html>
